@@ -1,12 +1,17 @@
-"use client"
+"use server"
 
-import { login } from "./lib/actions/auth";
+import { auth } from "@/auth";
 
-export default function Home() {
+import { SignInButton } from "./components/sign-in-button";
+
+export default async function Home() {
+  const session = await auth()
+  console.log({ session})
   return (
-    <div>
+    <div className="flex items-center justify-center flex-col min-h-screen">
+      {" "}
       <p>You Are Not Sign In</p>
-      <button onClick={() => login()}>Sign In With Github</button>
+      <SignInButton />
     </div>
   );
 }
